@@ -1,4 +1,4 @@
-import { Info } from "~~/types/info";
+import type { Info } from "~~/types/info";
 
 // "https://ipinfo.io/json"
 let cachedData: Info | null = null;
@@ -21,6 +21,6 @@ export default eventHandler(async (event) => {
       Expires: "0",
     },
     status: 200,
-    data: cachedData as Info,
+    data: cachedData,
   };
 });

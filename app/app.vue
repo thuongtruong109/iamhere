@@ -1,12 +1,4 @@
-<script setup lang="ts">
-const colorMode = useColorMode();
-
-const isDarkMode = computed({
-  get: () => colorMode.preference === "dark",
-  set: () =>
-    (colorMode.preference = colorMode.value === "dark" ? "light" : "dark"),
-});
-
+<script setup>
 useHead({
   htmlAttrs: { lang: "en" },
   link: [{ rel: "icon", href: "/icon.png" }],
@@ -14,9 +6,8 @@ useHead({
 
 useSeoMeta({
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  title: "I am here",
-  description:
-    "A Nuxt demo hosted with edge-side rendering, authentication and queyring a Cloudflare D1 database",
+  title: "Locanet",
+  description: "Location information of the user based on the IP address",
   ogImage: "/social-image.png",
   twitterImage: "/social-image.png",
   twitterCard: "summary_large_image",
@@ -28,23 +19,9 @@ useSeoMeta({
     <UContainer class="min-h-screen flex flex-col my-4">
       <UCard variant="subtle">
         <template #header>
-          <h3 class="text-lg font-semibold leading-6">
-            <NuxtLink to="/"> I am here </NuxtLink>
-          </h3>
-          <UButton
-            square
-            variant="ghost"
-            color="neutral"
-            :icon="
-              $colorMode.preference === 'dark' ||
-              $colorMode.preference === 'system'
-                ? 'i-lucide-moon'
-                : 'i-lucide-sun'
-            "
-            @click="isDarkMode = !isDarkMode"
-          />
+          <Header />
         </template>
-        <NuxtPage />
+        <Info />
         <USeparator class="my-4" />
         <Footer />
       </UCard>
