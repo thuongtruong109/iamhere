@@ -14,7 +14,7 @@ useHead({
 
 useSeoMeta({
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  title: "Here we go",
+  title: "I am here",
   description:
     "A Nuxt demo hosted with edge-side rendering, authentication and queyring a Cloudflare D1 database",
   ogImage: "/social-image.png",
@@ -29,7 +29,7 @@ useSeoMeta({
       <UCard variant="subtle">
         <template #header>
           <h3 class="text-lg font-semibold leading-6">
-            <NuxtLink to="/"> Here we go </NuxtLink>
+            <NuxtLink to="/"> I am here </NuxtLink>
           </h3>
           <UButton
             square
@@ -45,6 +45,8 @@ useSeoMeta({
           />
         </template>
         <NuxtPage />
+        <USeparator class="my-4" />
+        <Footer />
       </UCard>
     </UContainer>
   </UApp>

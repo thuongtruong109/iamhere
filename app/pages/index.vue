@@ -5,64 +5,57 @@ const { data: info } = useQuery(infoQuery);
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    {{ info }}
-
-    <nui-card class="max-w-xl mx-auto p-6">
-      <template #header>
-        <div class="flex items-center justify-between">
-          <h2 class="text-xl font-semibold">IP Info</h2>
-          <nui-badge color="success">Status: {{ info.status }}</nui-badge>
-        </div>
-      </template>
-
-      <nui-divider class="my-4" />
-
-      <div class="space-y-2">
-        <p><strong>IP Address:</strong> {{ info.query }}</p>
-        <p>
-          <strong>Country:</strong> {{ info.CountryName }} ({{
-            info.CountryCode
-          }})
-        </p>
-        <p>
-          <strong>Region:</strong> {{ info.RegionName }} ({{ info.RegionCode }})
-        </p>
-        <p><strong>City:</strong> {{ info.City }} — {{ info.Postal }}</p>
-        <p><strong>Capital:</strong> {{ info.Capital }}</p>
-        <p>
-          <strong>Continent:</strong> {{ info.ContinentName }} ({{
-            info.ContinentCode
-          }})
-        </p>
-        <p>
-          <strong>Latitude / Longitude:</strong> {{ info.Latitude }},
-          {{ info.Longitude }}
-        </p>
-        <p><strong>TimeZone:</strong> {{ info.TimeZone }}</p>
+  <UCard class="w-full rounded-2xl shadow-lg">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800 flex items-center">
+        <span
+          class="size-3 mr-2 rounded-full"
+          :class="
+            info.data.status === 'success' ? 'bg-green-500' : 'bg-red-500'
+          "
+        />{{ info.data.query }}
+      </h2>
+      <div class="flex items-center space-x-1">
+        <img
+          :src="`https://flagsapi.com/${info.data.CountryCode}/flat/24.png`"
+        />
+        <span class="text-sm"
+          >{{ info.data.CountryName }} ({{ info.data.CountryCode }})</span
+        >
       </div>
+    </div>
 
-      <nui-divider class="my-4" />
-
-      <div class="space-y-2">
-        <p><strong>Phone Prefix:</strong> {{ info.PhonePrefix }}</p>
-        <p><strong>Currency:</strong> {{ info.Currency }}</p>
-        <p><strong>USD Rate:</strong> {{ info.USDRate }}</p>
-        <p><strong>EUR Rate:</strong> {{ info.EURRate }}</p>
-      </div>
-
-      <nui-divider class="my-4" />
-
-      <div class="space-y-2">
-        <p><strong>ASN:</strong> {{ info.asn }}</p>
-        <p><strong>Organization:</strong> {{ info.org }}</p>
-      </div>
-    </nui-card>
-    <p>
-      It is made using
-      <a href="https://hub.nuxt.com" class="text-(--ui-primary)">NuxtHub</a> for
-      a zero-config development & deployment experience on Cloudflare.
-    </p>
-    <USeparator />
-  </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-gray-700 text-sm"
+    >
+      <p>
+        <span class="font-medium text-gray-500">IP Address:</span>
+        <span class="font-semibold text-black">115.77.20.79</span>
+      </p>
+      <!-- <p>
+        <span class="font-medium text-gray-500"
+          ><Icon name="lucide:map-pin" /> Region:</span
+        >
+        Ho Chi Minh (SG)
+      </p> -->
+      <p>
+        <span class="font-medium text-gray-500">City:</span> Ho Chi Minh City —
+        700000
+      </p>
+      <p><span class="font-medium text-gray-500">Capital:</span> Hanoi</p>
+      <p><span class="font-medium text-gray-500">Continent:</span> Asia (AS)</p>
+      <p>
+        <span class="font-medium text-gray-500">Latitude / Longitude:</span>
+        10.822, 106.6257
+      </p>
+      <p>
+        <span class="font-medium text-gray-500">TimeZone:</span>
+        Asia/Ho_Chi_Minh
+      </p>
+      <p><span class="font-medium text-gray-500">Phone Prefix:</span> +84</p>
+      <p><span class="font-medium text-gray-500">Currency:</span> VND</p>
+      <p><span class="font-medium text-gray-500">USD Rate:</span> 26147.21</p>
+      <p><span class="font-medium text-gray-500">EUR Rate:</span> 30349.56</p>
+    </div>
+  </UCard>
 </template>

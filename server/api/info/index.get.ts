@@ -1,17 +1,17 @@
-export default eventHandler(async (event) => {
-  // "https://ipinfo.io/json"
-  //  "ip": "115.77.20.79",
-  // "hostname": "adsl.viettel.vn",
-  // "city": "Ho Chi Minh City",
-  // "region": "Ho Chi Minh",
-  // "country": "VN",
-  // "loc": "10.8230,106.6296",
-  // "org": "AS7552 Viettel Group",
-  // "postal": "71606",
-  // "timezone": "Asia/Ho_Chi_Minh",
-  // "readme": "https://ipinfo.io/missingauth"
+import { Info } from "~~/types/info";
 
-  const response = await $fetch("https://apip.cc/json");
+// "https://ipinfo.io/json"
+let cachedData: Info | null = null;
+let cacheTimestamp = 0;
+const CACHE_DURATION = 1 * 60 * 1000;
+
+export default eventHandler(async (event) => {
+  const now = Date.now();
+
+  if (!cachedData || now - cacheTimestamp > CACHE_DURATION) {
+    cachedData = await $fetch("https://apip.cc/json");
+    cacheTimestamp = now;
+  }
 
   return {
     headers: {
@@ -21,24 +21,6 @@ export default eventHandler(async (event) => {
       Expires: "0",
     },
     status: 200,
-    data: response,
+    data: cachedData as Info,
   };
 });
-
-// async fetch(request): Promise<Response> {
-// 		return new Response(
-// 			JSON.stringify({
-// 				city: request.cf?.city,
-// 				postalCode: request.cf?.postalCode,
-// 				region: request.cf?.region,
-// 				regionCode: request.cf?.regionCode,
-// 				country: request.cf?.country,
-// 				continent: request.cf?.continent,
-// 				timezone: request.cf?.timezone,
-// 				latitude: request.cf?.latitude,
-// 				longitude: request.cf?.longitude,
-// 				asOrganization: request.cf?.asOrganization,
-// 				userIP: request.headers.get('CF-Connecting-IP'),
-// 			})
-// 		);
-// 	},
