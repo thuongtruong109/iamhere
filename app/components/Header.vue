@@ -9,7 +9,7 @@ const isDarkMode = computed({
 </script>
 
 <template>
-  <h3 class="text-lg font-semibold leading-6">
+  <h3 class="text-lg font-semibold leading-6 drop-shadow-sm">
     <NuxtLink to="/">Locanet</NuxtLink>
   </h3>
   <UButton
