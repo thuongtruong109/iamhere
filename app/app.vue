@@ -12,6 +12,8 @@ useSeoMeta({
   twitterImage: "/social-image.png",
   twitterCard: "summary_large_image",
 });
+
+const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
 </script>
 
 <template>
@@ -23,6 +25,9 @@ useSeoMeta({
         </template>
         <Info />
         <USeparator class="my-4" />
+        <client-only>
+          <SvgMap />
+        </client-only>
         <Footer />
       </UCard>
     </UContainer>
