@@ -21,8 +21,8 @@ const props = defineProps({
 
 const map = ref(null);
 
-onMounted(() => {
-  new svgMap({
+onMounted(async () => {
+  await new svgMap({
     targetElementID: "svgMap",
     mouseWheelZoomEnabled: false,
     hideFlag: false,
@@ -44,20 +44,20 @@ onMounted(() => {
       },
     },
   });
-});
 
-const highlightCountry = (id) => {
-  const el = document.querySelector(`[data-id="${id}"]`);
-  if (el) {
-    el.setAttribute("fill", "#ff0000");
-  }
-};
-
-onMounted(() => {
   setTimeout(() => {
     highlightCountry(props.countryCode);
   }, 100);
 });
+
+const highlightCountry = (id) => {
+  if (import.meta.client) {
+    const el = document?.querySelector(`[data-id="${id}"]`);
+    if (el) {
+      el.setAttribute("fill", "#ff0000");
+    }
+  }
+};
 
 watch(
   () => props.countryCode,

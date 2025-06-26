@@ -1,6 +1,24 @@
-# Locanet
+<div align="center">
+    <img src="./public/banner.png" alt="banner"/>
+    <p>Detect user access location information along with IP address</p>
+    <a href="https://locanet.vercel.app" target="_blank">
+        <img src="https://img.shields.io/badge/Demo-green?logo=nuxt&logoColor=white" alt="Demo badge" />
+    </a>
+    <a href="./LICENSE" target="_blank">
+        <img src="https://img.shields.io/badge/MIT%20License-pink?logo=opensource&logoColor=white" alt="License badge" />
+    </a>
+     <!-- <a href="https://svgmap.com" target="_blank">
+        <img src="https://img.shields.io/badge/svgmap-v2.12-blue?logo=svg&logoColor=white" alt="SVG Map badge" />
+    </a> -->
+    <img src="./public/demo.png" alt="demo" />
+</div>
 
-> Location information of the user based on the IP address.
+## Features
+
+- Server-Side Rendering with [Nuxt](https://nuxt.com/docs/getting-started/ssr)
+- User interface made with [Nuxt UI](https://ui.nuxt.com) x [Nuxt Icon](https://icon.nuxt.com)
+- Cache invalidation and Optimistic UI with [Pinia Nuxt](https://pinia.esm.dev) x [Pinia Colada](https://pinia-colada.esm.dev)
+- Map visualization with [svgmap](https://www.npmjs.com/package/svgmap)
 
 ## Development
 
@@ -14,12 +32,7 @@ npm run dev
 
 [MIT License](./LICENSE)
 
-<!-- ## Features
+## References
 
-- [Server-Side Rendering on the Edge](https://nuxt.com/blog/nuxt-on-the-edge)
-- Authentication backed-in using [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils)
-- Leverage [Cloudflare D1](https://developers.cloudflare.com/d1/) as database with [drizzle ORM](https://orm.drizzle.team/) using [`hubDatabase()`](https://hub.nuxt.com/docs/storage/database)
-- [Automatic database migrations](https://hub.nuxt.com/docs/features/database#database-migrations) in development & when deploying
-- User interface made with [Nuxt UI](https://ui.nuxt.com)
-- Embed [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview/) in the [Nuxt DevTools](https://devtools.nuxt.com)
-- Cache invalidation and Optimistic UI with [Pinia Colada](https://pinia-colada.esm.dev) -->
+<!-- https://www.iplocation.net/ip-lookup -->
+<!-- https://img.icons8.com/fluency/21/gps-device.png -->

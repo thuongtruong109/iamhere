@@ -1,6 +1,6 @@
 {
   "name": "locanet",
-  "description": "Location information of the user based on the IP address",
+  "description": "Detect user access location information along with IP address",
   "version": "1.0.0",
   "scripts": {
     "dev": "nuxi dev",
