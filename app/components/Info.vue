@@ -61,7 +61,7 @@ const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
       </p>
       <p>
         <UIcon name="mynaui:map" /><span>{{ info.data.Latitude }}°</span
-        ><span>-</span><span>{{ info.data.Longitude }}°</span>
+        ><span>/</span><span>{{ info.data.Longitude }}°</span>
       </p>
       <p>
         <UIcon name="solar:phone-linear" /><span>{{
@@ -96,6 +96,7 @@ const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
     </div>
 
     <ClientOnly>
+      <Network />
       <SvgMap
         :country-code="info.data.CountryCode"
         :country-name="info.data.CountryName"
