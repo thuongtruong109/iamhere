@@ -7,9 +7,9 @@ useHead({
 useSeoMeta({
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   title: "Locanet",
-  description: "Location information of the user based on the IP address",
-  ogImage: "/social-image.png",
-  twitterImage: "/social-image.png",
+  description: "Detect user access location information along with IP address",
+  ogImage: "/banner.png",
+  twitterImage: "/banner.png",
   twitterCard: "summary_large_image",
 });
 </script>

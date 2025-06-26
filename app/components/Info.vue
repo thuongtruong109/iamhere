@@ -2,6 +2,8 @@
 import { infoQuery } from "~/queries/info";
 
 const { data: info } = useQuery(infoQuery);
+
+const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
 </script>
 
 <template>
@@ -30,6 +32,7 @@ const { data: info } = useQuery(infoQuery);
       <div class="flex items-center space-x-1">
         <img
           :src="`https://flagsapi.com/${info.data.CountryCode}/flat/24.png`"
+          alt="Country Flag"
         />
         <span class="text-sm font-medium">{{ info.data.CountryCode }}</span>
       </div>
@@ -91,5 +94,12 @@ const { data: info } = useQuery(infoQuery);
         <span>{{ Number(info.data.EURRate).toLocaleString() }}</span>
       </p>
     </div>
+
+    <ClientOnly>
+      <SvgMap
+        :country-code="info.data.CountryCode"
+        :country-name="info.data.CountryName"
+      />
+    </ClientOnly>
   </UCard>
 </template>

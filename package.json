@@ -1,6 +1,6 @@
 {
   "name": "locanet",
-  "description": "Location information of the user based on the IP address",
+  "description": "Detect user access location information along with IP address",
   "version": "1.0.0",
   "scripts": {
     "dev": "nuxi dev",
@@ -20,6 +20,7 @@
     "h3-zod": "^0.5.3",
     "nuxt": "^3.17.5",
     "pinia": "^3.0.3",
+    "svgmap": "^2.12.2",
     "zod": "^3.25.67"
   },
   "devDependencies": {
