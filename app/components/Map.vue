@@ -1,10 +1,23 @@
 <template>
-  <div id="svgMap" ref="map" class="w-full h-full" />
+  <div class="w-full h-full relative">
+    <div id="svgMap" ref="map" class="w-full h-full" />
+  </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import svgMap from "svgmap";
+
+const props = defineProps({
+  countryCode: {
+    type: String,
+    default: "VN",
+  },
+  countryName: {
+    type: String,
+    default: "Vietnam",
+  },
+});
 
 const map = ref(null);
 
@@ -14,7 +27,7 @@ onMounted(() => {
     mouseWheelZoomEnabled: false,
     hideFlag: false,
     countries: {
-      UA: "dshs",
+      [props.countryCode]: props.countryName,
     },
     data: {
       data: {
@@ -27,47 +40,48 @@ onMounted(() => {
       },
       applyData: "countresidents",
       values: {
-        UA: { countresidents: 42393 },
+        [props.countryCode]: { countresidents: 99999999999 },
       },
     },
   });
 });
+
+const highlightCountry = (id) => {
+  const el = document.querySelector(`[data-id="${id}"]`);
+  if (el) {
+    el.setAttribute("fill", "#ff0000");
+  }
+};
+
+onMounted(() => {
+  setTimeout(() => {
+    highlightCountry(props.countryCode);
+  }, 100);
+});
+
+watch(
+  () => props.countryCode,
+  (newVal) => {
+    highlightCountry(newVal);
+  }
+);
 </script>
 
-<style scoped>
-/* .svgMap-tooltip {
-  background: rgba(31, 41, 55, 0.9);
-  box-shadow: 0px 4px 8px rgba(24, 33, 45, 0.4);
-  border-radius: 11px;
-  color: #ffffff !important;
-}
-.svgMap-tooltip .svgMap-tooltip-content-wrapper {
-  color: #ffffff !important;
-}
-.svgMap-tooltip .svgMap-tooltip-content .svgMap-tooltip-no-data {
-  color: #ffffff !important;
-}
-.svgMap-tooltip .svgMap-tooltip-content {
-  color: #ffffff !important;
-}
-.svgMap-tooltip .svgMap-tooltip-content table td span {
-  color: #ffffff;
+<style>
+.svgMap-tooltip,
+.svgMap-tooltip-content-wrapper,
+.svgMap-tooltip-pointer,
+.svgMap-map-controls-wrapper,
+.svgMap-map-controls-zoom,
+.svgMap-control-button,
+.svgMap-zoom-button,
+.svgMap-zoom-out-button {
+  display: none !important;
 }
 
-.svgMap-tooltip-pointer {
-  display: none;
+.svgMap-map-image {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 270px !important;
 }
-.svgMap-tooltip .svgMap-tooltip-title {
-  padding: 0;
-}
-.svgMap-tooltip .svgMap-tooltip-content-container {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-.svgMap-tooltip .svgMap-tooltip-content-container .svgMap-tooltip-content {
-  font-weight: 500;
-} */
-/* .svgMap-tooltip .svgMap-tooltip-flipped {
-} */
 </style>

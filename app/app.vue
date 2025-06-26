@@ -25,9 +25,6 @@ const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
         </template>
         <Info />
         <USeparator class="my-4" />
-        <client-only>
-          <SvgMap />
-        </client-only>
         <Footer />
       </UCard>
     </UContainer>

@@ -91,5 +91,13 @@ const { data: info } = useQuery(infoQuery);
         <span>{{ Number(info.data.EURRate).toLocaleString() }}</span>
       </p>
     </div>
+
+    <client-only>
+      <Map
+        class="mt-4"
+        :country-code="info.data.CountryCode"
+        :country-name="info.data.CountryName"
+      />
+    </client-only>
   </UCard>
 </template>
