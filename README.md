@@ -40,3 +40,4 @@ https://6.tnedi.me/json
 https://api.iplocation.net/?cmd=get-ip
 https://api.iplocation.net/?cmd=ip-country&ip=115.77.20.79
 https://api.iplocation.net/?ip=8.8.8.8 -->
+<!-- https://ipinfo.io/json -->

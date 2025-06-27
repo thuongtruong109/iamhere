@@ -1,14 +1,51 @@
 <script setup lang="ts">
-import { infoQuery } from "~/queries/info";
+// import { infoQuery } from "~/queries/info";
 
-const { data: info } = useQuery(infoQuery);
+// const { data: info } = useQuery(infoQuery);
 
-const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
+// const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
+
+// let cachedData: Info | null = null;
+// let cacheTimestamp = 0;
+// const CACHE_DURATION = 1 * 60 * 1000;
+
+// const info = ref({
+//   data: {
+//     status: "loading",
+//     query: "",
+//     CountryCode: "",
+//     City: "",
+//     CountryName: "",
+//     Capital: "",
+//     TimeZone: "",
+//     Latitude: 0,
+//     Longitude: 0,
+//     PhonePrefix: "",
+//     Postal: "",
+//     asn: "",
+//     org: "",
+//     Currency: "",
+//     USDRate: 0,
+//     EURRate: 0,
+//   },
+// });
+
+const info = ref();
+
+onMounted(async () => {
+  const data = await useAsyncData<Info>("info", async () => {
+    const data = await $fetch<Info>("https://apip.cc/json");
+    return data;
+  });
+  console.log("Info data loaded:", data.data.value);
+  info.value = data.data.value;
+});
 </script>
 
 <template>
   <UCard class="w-full rounded-2xl shadow-lg">
-    <div class="flex justify-between items-center mb-4">
+    {{ info }}
+    <!-- <div class="flex justify-between items-center mb-4">
       <h2
         class="text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center"
       >
@@ -101,6 +138,6 @@ const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
         :country-code="info.data.CountryCode"
         :country-name="info.data.CountryName"
       />
-    </ClientOnly>
+    </ClientOnly> -->
   </UCard>
 </template>
