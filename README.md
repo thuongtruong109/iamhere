@@ -35,8 +35,7 @@ https://ipwhois.io/documentation
 https://ip-api.com/docs/api:json#test
 http://ip-api.com/json/115.77.20.79
 http://ipwho.is/115.77.20.79
-https://6.ident.me/json
-https://6.tnedi.me/json
+Ip v6: https://6.ident.me/json or https://6.tnedi.me/json
 https://api.iplocation.net/?cmd=get-ip
 https://api.iplocation.net/?cmd=ip-country&ip=115.77.20.79
 https://api.iplocation.net/?ip=8.8.8.8 -->

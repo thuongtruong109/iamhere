@@ -1,77 +1,57 @@
 <script setup lang="ts">
-// import { infoQuery } from "~/queries/info";
+import { infoQuery, v6Query } from "~/queries/info";
 
-// const { data: info } = useQuery(infoQuery);
+const { data: info } = useQuery(infoQuery);
+const { data: v6 } = useQuery(v6Query);
 
-// const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
+const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
 
-// let cachedData: Info | null = null;
-// let cacheTimestamp = 0;
-// const CACHE_DURATION = 1 * 60 * 1000;
-
-// const info = ref({
-//   data: {
-//     status: "loading",
-//     query: "",
-//     CountryCode: "",
-//     City: "",
-//     CountryName: "",
-//     Capital: "",
-//     TimeZone: "",
-//     Latitude: 0,
-//     Longitude: 0,
-//     PhonePrefix: "",
-//     Postal: "",
-//     asn: "",
-//     org: "",
-//     Currency: "",
-//     USDRate: 0,
-//     EURRate: 0,
-//   },
-// });
-
-const info = ref();
-
-onMounted(async () => {
-  const data = await useAsyncData<Info>("info", async () => {
-    const data = await $fetch<Info>("https://apip.cc/json");
-    return data;
-  });
-  console.log("Info data loaded:", data.data.value);
-  info.value = data.data.value;
-});
+const isV6 = ref<boolean>(false);
+const toggleV6 = () => {
+  isV6.value = !isV6.value;
+};
 </script>
 
 <template>
   <UCard class="w-full rounded-2xl shadow-lg">
-    {{ info }}
-    <!-- <div class="flex justify-between items-center mb-4">
-      <h2
-        class="text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center"
-      >
-        <div
-          class="relative size-3 mr-2 rounded-full"
-          :class="
-            info.data.status === 'success' ? 'bg-green-500' : 'bg-red-500'
-          "
-        >
-          <span
-            class="absolute inset-0 size-full rounded-full animate-ping"
-            :class="
-              info.data.status === 'success' ? 'bg-green-500' : 'bg-red-500'
-            "
-          />
-        </div>
-        <span>
-          {{ info.data.query }}
-        </span>
-      </h2>
-      <div class="flex items-center space-x-1">
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center space-x-2">
         <img
-          :src="`https://flagsapi.com/${info.data.CountryCode}/flat/24.png`"
+          :src="`https://flagsapi.com/${info.CountryCode}/flat/24.png`"
           alt="Country Flag"
         />
-        <span class="text-sm font-medium">{{ info.data.CountryCode }}</span>
+
+        <p
+          class="text-sm sm:text-base md:text-lg font-bold text-gray-800 dark:text-gray-200 truncate overflow-hidden"
+        >
+          {{ isV6 ? v6.ip : info.query }}
+        </p>
+      </div>
+      <div
+        class="flex items-center border border-slate-200/50 rounded-md p-0.5 cursor-pointer"
+      >
+        <UButton
+          type="button"
+          title="Ipv4"
+          size="xs"
+          :color="isV6 ? 'neutral' : 'primary'"
+          :variant="isV6 ? 'ghost' : 'soft'"
+          :disabled="!isV6"
+          @click="toggleV6"
+        >
+          v4
+        </UButton>
+        <UButton
+          type="button"
+          title="Ipv6"
+          size="xs"
+          :color="isV6 ? 'primary' : 'neutral'"
+          :variant="isV6 ? 'soft' : 'ghost'"
+          :disabled="isV6"
+          @click="toggleV6"
+        >
+          v6
+        </UButton>
       </div>
     </div>
 
@@ -80,64 +60,60 @@ onMounted(async () => {
     >
       <p>
         <UIcon name="mingcute:location-line" size="15" /><span>{{
-          info.data.City
+          info.City
         }}</span>
       </p>
       <p>
-        <UIcon name="carbon:data-center" /><span>{{
-          info.data.CountryName
-        }}</span>
+        <UIcon name="carbon:data-center" /><span
+          >{{ info.CountryName }} ({{ info.CountryCode }})</span
+        >
       </p>
       <p>
-        <UIcon name="hugeicons:star" /><span>{{ info.data.Capital }}</span>
+        <UIcon name="hugeicons:star" /><span>{{ info.Capital }}</span>
       </p>
       <p>
-        <UIcon name="icon-park-outline:time" /><span>{{
-          info.data.TimeZone
-        }}</span>
+        <UIcon name="icon-park-outline:time" /><span>{{ info.TimeZone }}</span>
       </p>
       <p>
-        <UIcon name="mynaui:map" /><span>{{ info.data.Latitude }}°</span
-        ><span>/</span><span>{{ info.data.Longitude }}°</span>
+        <UIcon name="mynaui:map" /><span>{{ info.Latitude }}°</span
+        ><span>/</span><span>{{ info.Longitude }}°</span>
       </p>
       <p>
-        <UIcon name="solar:phone-linear" /><span>{{
-          info.data.PhonePrefix
-        }}</span>
+        <UIcon name="solar:phone-linear" /><span>{{ info.PhonePrefix }}</span>
       </p>
       <p>
-        <UIcon name="solar:letter-linear" /><span>{{ info.data.Postal }}</span>
+        <UIcon name="solar:letter-linear" /><span>{{ info.Postal }}</span>
       </p>
       <p>
         <UIcon name="icon-park-outline:connection-arrow" size="11" /><span>{{
-          info.data.asn
+          info.asn
         }}</span>
       </p>
       <p>
-        <UIcon name="ep:connection" /><span>{{ info.data.org }}</span>
+        <UIcon name="ep:connection" /><span>{{ info.org }}</span>
       </p>
       <p>
         <UIcon name="solar:wad-of-money-linear" size="15" /><span>{{
-          info.data.Currency
+          info.Currency
         }}</span>
       </p>
       <p>
         <UIcon name="iconoir:dollar-circle" /><span>{{
-          Number(info.data.USDRate).toLocaleString()
+          Number(info.USDRate).toLocaleString()
         }}</span>
       </p>
       <p>
         <UIcon name="material-symbols:euro" />
-        <span>{{ Number(info.data.EURRate).toLocaleString() }}</span>
+        <span>{{ Number(info.EURRate).toLocaleString() }}</span>
       </p>
     </div>
 
     <ClientOnly>
       <Network />
       <SvgMap
-        :country-code="info.data.CountryCode"
-        :country-name="info.data.CountryName"
+        :country-code="info.CountryCode"
+        :country-name="info.CountryName"
       />
-    </ClientOnly> -->
+    </ClientOnly>
   </UCard>
 </template>

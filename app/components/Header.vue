@@ -16,6 +16,9 @@ const isDarkMode = computed({
     <NuxtLink to="/" class="translate-y-px">Locanet</NuxtLink>
   </h3>
   <UButton
+    type="button"
+    title="Toggle Dark Mode"
+    aria-label="Toggle Dark Mode"
     square
     variant="ghost"
     color="neutral"

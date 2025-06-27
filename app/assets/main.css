@@ -4,3 +4,11 @@
 @theme static {
   --font-sans: "Public Sans", sans-serif;
 }
+
+button {
+  @apply cursor-pointer;
+}
+
+* {
+  @apply box-border;
+}
