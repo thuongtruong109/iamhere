@@ -24,4 +24,12 @@ export default defineNuxtConfig({
       },
     },
   },
+  head: {
+    meta: [
+      {
+        httpEquiv: "Content-Security-Policy",
+        content: "upgrade-insecure-requests",
+      },
+    ],
+  },
 });
