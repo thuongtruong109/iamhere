@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { mediumQuery, largeQuery, v6Query } from "~/queries/info";
-
-const { data: medium } = useQuery(mediumQuery);
-const { data: v6 } = useQuery(v6Query);
-const { data: large } = useQuery(largeQuery);
+import type { LargeInfo, MediumInfo, V6Info } from "~~/types/info";
 
 const SvgMap = defineAsyncComponent(() => import("@/components/Map.vue"));
 
@@ -11,6 +7,24 @@ const isV6 = ref<boolean>(false);
 const toggleV6 = () => {
   isV6.value = !isV6.value;
 };
+
+const config = useRuntimeConfig();
+
+const { data: info } = await useAsyncData("info", async () => {
+  const [medium, large, v6] = await Promise.all<
+    [MediumInfo, LargeInfo, V6Info]
+  >([
+    $fetch(config.public.mediumApiUrl),
+    $fetch(config.public.largeApiUrl),
+    $fetch(config.public.v6ApiUrl),
+  ]);
+
+  return {
+    medium,
+    large,
+    v6,
+  };
+});
 </script>
 
 <template>
@@ -18,14 +32,14 @@ const toggleV6 = () => {
     <div class="flex justify-between items-center mb-4">
       <div class="flex items-center space-x-2">
         <img
-          :src="`https://flagsapi.com/${medium?.CountryCode}/flat/24.png`"
+          :src="`https://flagsapi.com/${info?.medium?.CountryCode}/flat/24.png`"
           alt="Country Flag"
         />
 
         <p
           class="text-sm sm:text-base md:text-lg font-bold text-gray-800 dark:text-gray-200 truncate overflow-hidden"
         >
-          {{ isV6 ? v6?.ip : medium?.query }}
+          {{ isV6 ? info?.v6?.ip : info?.medium?.query }}
         </p>
       </div>
       <div
@@ -57,85 +71,101 @@ const toggleV6 = () => {
     </div>
 
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-8 text-gray-700 dark:text-gray-400 text-sm [&>p]:flex [&>p]:items-center [&>p]:space-x-1"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-8 text-gray-700 dark:text-gray-400 text-sm [&>p]:flex [&>p]:items-center [&>p]:space-x-1 [&>p>a]:text-green-700 dark:[&>p>a]:text-green-400 [&>p>a]:hover:underline"
     >
       <p>
-        <UIcon name="mingcute:location-line" size="15" /><span>{{
-          medium?.City
-        }}</span>
-      </p>
-      <p>
-        <UIcon name="carbon:data-center" /><span>{{
-          medium?.CountryName
-        }}</span>
+        <UIcon name="mingcute:location-line" size="15" />
         <a
-          :href="`https://www.ip2location.com/${medium?.CountryCode.toLowerCase()}`"
-          class="text-blue-700 dark:text-blue-400 hover:underline"
-          >({{ medium?.CountryCode }})</a
+          :href="`https://www.bing.com/search?q=${info?.medium?.City}`"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ info?.medium?.City }}</a
         >
       </p>
       <p>
-        <UIcon name="hugeicons:star" /><span>{{ medium?.Capital }}</span>
+        <UIcon name="carbon:data-center" /><span>{{
+          info?.medium?.CountryName
+        }}</span>
+        <a
+          :href="`https://www.ip2location.com/${info?.medium?.CountryCode.toLowerCase()}`"
+          >({{ info?.medium?.CountryCode }})</a
+        >
+      </p>
+      <p>
+        <UIcon name="hugeicons:star" />
+        <a
+          href="https://en.wikipedia.org/wiki/{{ info?.medium?.Capital }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ info?.medium?.Capital }}</a
+        >
       </p>
       <p>
         <UIcon name="icon-park-outline:time" /><span>{{
-          medium?.TimeZone
+          info?.medium?.TimeZone
         }}</span>
       </p>
       <p>
-        <UIcon name="solar:flip-vertical-line-duotone" size="12" /><span>{{
-          medium?.Latitude
-        }}</span
-        ><span>/</span><span>{{ medium?.Longitude }}</span>
+        <UIcon name="solar:flip-vertical-line-duotone" size="12" />
+        <a
+          :href="`http://www.latlong.net/c/?lat=${info?.medium?.Latitude}&long=${info?.medium?.Longitude}`"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ info?.medium?.Latitude }}, {{ info?.medium?.Longitude }}</a
+        >
       </p>
       <p>
         <UIcon name="mynaui:map" /><span
-          >{{ large?.timezone.utc }} ({{ large?.region_code }})</span
+          >{{ info?.large?.timezone?.utc }} ({{
+            info?.large?.region_code
+          }})</span
         >
       </p>
       <p>
         <UIcon name="ion:earth-outline" /><span
-          >{{ medium?.ContinentName }} ({{ medium?.ContinentCode }})</span
+          >{{ info?.medium?.ContinentName }} ({{
+            info?.medium?.ContinentCode
+          }})</span
         >
       </p>
       <p>
         <UIcon name="solar:phone-linear" /><span>{{
-          medium?.PhonePrefix
+          info?.medium?.PhonePrefix
         }}</span>
       </p>
       <p>
-        <UIcon name="solar:letter-linear" /><span>{{ medium?.Postal }}</span>
+        <UIcon name="solar:letter-linear" /><span>{{
+          info?.medium?.Postal
+        }}</span>
       </p>
       <p>
         <UIcon name="icon-park-outline:connection-arrow" size="11" /><span>{{
-          medium?.asn
+          info?.medium?.asn
         }}</span>
       </p>
       <p>
         <UIcon name="ep:connection" />
-        <a
-          :href="`https://${large?.connection.domain}`"
-          class="text-blue-700 dark:text-blue-400 hover:underline"
-          >{{ medium?.org }}</a
-        >
+        <a :href="`https://${info?.large?.connection?.domain}`">{{
+          info?.medium?.org
+        }}</a>
       </p>
       <p>
         <UIcon name="solar:wad-of-money-linear" size="15" /><span>{{
-          medium?.Currency
+          info?.medium?.Currency
         }}</span>
       </p>
       <p>
         <UIcon name="iconoir:dollar-circle" /><span>{{
-          Number(medium?.USDRate).toLocaleString()
+          Number(info?.medium?.USDRate).toLocaleString()
         }}</span>
       </p>
       <p>
         <UIcon name="material-symbols:euro" />
-        <span>{{ Number(medium?.EURRate).toLocaleString() }}</span>
+        <span>{{ Number(info?.medium?.EURRate).toLocaleString() }}</span>
       </p>
       <p>
         <UIcon name="mdi:weather-hail" size="15" /><span>{{
-          v6?.weather
+          info?.v6?.weather
         }}</span>
       </p>
     </div>
@@ -143,8 +173,8 @@ const toggleV6 = () => {
     <ClientOnly>
       <Network />
       <SvgMap
-        :country-code="medium?.CountryCode"
-        :country-name="medium?.CountryName"
+        :country-code="info?.medium?.CountryCode"
+        :country-name="info?.medium?.CountryName"
       />
     </ClientOnly>
   </UCard>

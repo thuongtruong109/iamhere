@@ -1,4 +1,4 @@
-export interface Medium {
+export interface MediumInfo {
   status: string;
   query: string;
   CountryCode: string;
@@ -21,7 +21,7 @@ export interface Medium {
   org: string;
 }
 
-export interface V6 {
+export interface V6Info {
   ip: string;
   aso: string;
   asn: number;
@@ -36,7 +36,7 @@ export interface V6 {
   weather: string;
 }
 
-export interface Large {
+export interface LargeInfo {
   "About Us": string;
   ip: string;
   success: boolean;

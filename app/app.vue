@@ -21,7 +21,9 @@ useSeoMeta({
         <template #header>
           <Header />
         </template>
-        <Info />
+        <ClientOnly>
+          <Info />
+        </ClientOnly>
         <USeparator class="my-4" />
         <Footer />
       </UCard>

@@ -10,7 +10,10 @@
      <a href="https://paypal.me/thuongtruong1009" target="_blank">
         <img src="https://img.shields.io/badge/Support-blue?logo=paypal&logoColor=white" alt="Paypal badge" />
     </a><br><br>
-    <img src="./public/demo.png" alt="demo" />
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./public/demo_dark.png">
+      <img alt="Demo Light" src="./public/demo_light.png" width="100%" height="auto">
+    </picture>
 </div>
 
 <div align="center">
@@ -59,4 +62,4 @@ Large info and search by IP: https://ipwhois.io/documentation - http://ipwho.is/
 Look up: https://ip-api.com/docs/api:json#test
 Ip v6: https://6.ident.me/json - https://6.tnedi.me/json
 Only IP: https://api.iplocation.net/get-ip - https://api.iplocation.net/?cmd=get-ip - https://api.iplocation.net/?cmd=ip-country&ip=115.77.20.79 - https://api.iplocation.net/?ip=8.8.8.8
-Medium Info: https://ipinfo.io/json -->
+Medium Info: https://ipinfo.io/json - https://apip.cc/json -->
