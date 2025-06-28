@@ -5,7 +5,7 @@ useHead({
 });
 
 useSeoMeta({
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  viewport: "width=device-width, initial-scale=1.0",
   title: "Locanet",
   description: "Detect user access location information along with IP address",
   ogImage: "/banner.png",

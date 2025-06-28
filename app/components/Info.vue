@@ -34,6 +34,8 @@ const { data: info } = await useAsyncData("info", async () => {
         <img
           :src="`https://flagsapi.com/${info?.medium?.CountryCode}/flat/24.png`"
           alt="Country Flag"
+          width="24"
+          height="24"
         />
 
         <p
@@ -79,6 +81,7 @@ const { data: info } = await useAsyncData("info", async () => {
           :href="`https://www.bing.com/search?q=${info?.medium?.City}`"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="City"
           >{{ info?.medium?.City }}</a
         >
       </p>
@@ -88,15 +91,19 @@ const { data: info } = await useAsyncData("info", async () => {
         }}</span>
         <a
           :href="`https://www.ip2location.com/${info?.medium?.CountryCode.toLowerCase()}`"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Country Code"
           >({{ info?.medium?.CountryCode }})</a
         >
       </p>
       <p>
         <UIcon name="hugeicons:star" />
         <a
-          href="https://en.wikipedia.org/wiki/{{ info?.medium?.Capital }}"
+          :href="`https://en.wikipedia.org/wiki/${info?.medium?.Capital}`"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Capital"
           >{{ info?.medium?.Capital }}</a
         >
       </p>
@@ -111,6 +118,7 @@ const { data: info } = await useAsyncData("info", async () => {
           :href="`http://www.latlong.net/c/?lat=${info?.medium?.Latitude}&long=${info?.medium?.Longitude}`"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Coordinates"
           >{{ info?.medium?.Latitude }}, {{ info?.medium?.Longitude }}</a
         >
       </p>
@@ -145,9 +153,13 @@ const { data: info } = await useAsyncData("info", async () => {
       </p>
       <p>
         <UIcon name="ep:connection" />
-        <a :href="`https://${info?.large?.connection?.domain}`">{{
-          info?.medium?.org
-        }}</a>
+        <a
+          :href="`https://${info?.large?.connection?.domain}`"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Organization"
+          >{{ info?.medium?.org }}</a
+        >
       </p>
       <p>
         <UIcon name="solar:wad-of-money-linear" size="15" /><span>{{
