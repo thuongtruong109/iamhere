@@ -13,7 +13,11 @@ const isDarkMode = computed({
     class="text-xl font-semibold leading-6 drop-shadow-sm flex items-center space-x-0.5"
   >
     <Logo />
-    <NuxtLink to="/" class="translate-y-px">Locanet</NuxtLink>
+    <NuxtLink
+      to="/"
+      class="translate-y-px bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent"
+      >Locanet</NuxtLink
+    >
   </h3>
   <UButton
     type="button"

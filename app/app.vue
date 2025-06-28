@@ -16,19 +16,18 @@ useSeoMeta({
 
 <template>
   <UApp>
-    <UContainer class="min-h-screen flex flex-col my-4">
-      <UCard variant="subtle">
+    <UContainer class="min-h-screen flex flex-col pt-4 space-y-8">
+      <UCard variant="subtle" color="primary">
         <template #header>
           <Header />
         </template>
         <ClientOnly>
           <Info />
         </ClientOnly>
-        <USeparator class="my-4" />
-        <Footer />
       </UCard>
-
-      <!-- <Landing /> -->
+      <Landing />
+      <USeparator class="my-4" />
+      <Footer />
     </UContainer>
   </UApp>
 </template>

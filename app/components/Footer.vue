@@ -1,12 +1,11 @@
 <template>
-  <footer>
-    <span
-      class="text-xs text-gray-400 mb-2 text-center flex items-center space-x-0.5"
+  <footer class="flex flex-col items-center">
+    <span class="text-xs text-gray-400 mb-2 flex items-center space-x-0.5"
       ><UIcon name="akar-icons:question" /><span
         >We do not collect or store any users data</span
       ></span
     >
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center w-full">
       <p
         class="text-center text-xs flex items-center space-x-0.5 text-neutral-500 dark:text-neutral-400"
       >

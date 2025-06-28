@@ -11,8 +11,8 @@
         <img src="https://img.shields.io/badge/Support-blue?logo=paypal&logoColor=white" alt="Paypal badge" />
     </a><br><br>
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./public/demo_dark.png">
-      <img alt="Demo Light" src="./public/demo_light.png" width="100%" height="auto">
+      <source media="(prefers-color-scheme: dark)" srcset="./public/demo_dark.jpeg">
+      <img alt="Demo Light" src="./public/demo_light.jpeg" width="100%" height="auto">
     </picture>
 </div>
 

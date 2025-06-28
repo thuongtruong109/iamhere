@@ -1,11 +1,5 @@
 export default defineNuxtConfig({
-  modules: [
-    "@nuxt/ui",
-    "@nuxt/eslint",
-    "@pinia/nuxt",
-    "@pinia/colada-nuxt",
-    "@nuxt/icon",
-  ],
+  modules: ["@nuxt/ui", "@nuxt/eslint", "@nuxt/icon"],
   css: ["~/assets/main.css"],
   runtimeConfig: {
     public: {
@@ -15,7 +9,7 @@ export default defineNuxtConfig({
     },
   },
   future: { compatibilityVersion: 4 },
-  compatibilityDate: "2025-06-25",
+  compatibilityDate: "2025-06-28",
   eslint: {
     config: {
       stylistic: {

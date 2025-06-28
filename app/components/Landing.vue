@@ -1,115 +1,125 @@
-<template>
-  <div class="max-w-6xl mx-auto">
-    <h2 class="inline-block mb-3 text-xs font-semibold rounded-full px-3 py-1">
-      FEATURES
-    </h2>
+<script setup>
+const badge = "FEATURES";
+const title = "The Best Data in the Industry";
+const description = "Access accurate, fast, and consistently available data.";
 
-    <h2 class="text-black text-2xl sm:text-3xl font-normal mb-3">
-      The Best Data in the Industry
+const features = [
+  {
+    img: "/landing/1.svg",
+    alt: "Target Icon",
+    title: "Geolocation Data",
+    description: "Pinpoint user location down to city and postal code.",
+  },
+  {
+    img: "/landing/2.svg",
+    alt: "Shield Icon",
+    title: "Intelligence Feeds",
+    description: "Instantly check IPs across 100+ threat feeds.",
+  },
+  {
+    img: "/landing/3.svg",
+    alt: "Signal Icon",
+    title: "Proxy & VPN Detection",
+    description: "Spot anonymous users and block fraud risks.",
+  },
+  {
+    img: "/landing/4.svg",
+    alt: "Router Icon",
+    title: "Company Data",
+    description: "Identify the business or owner behind an IP.",
+  },
+  {
+    img: "/landing/5.svg",
+    alt: "Server Icon",
+    title: "Usage Type",
+    description: "Classify IPs by ISP, datacenter, or business.",
+  },
+  {
+    img: "/landing/6.svg",
+    alt: "Bolt Icon",
+    title: "IP Reputation",
+    description: "AI-powered scores for threat and risk analysis.",
+  },
+];
+
+function getGridItemClasses(index) {
+  const i = index + 1;
+  const base = [];
+
+  const borderClasses = [];
+
+  if (i === 2 || i === 5) {
+    borderClasses.push(
+      "md:border-l",
+      "md:border-r",
+      "md:border-gray-200",
+      "dark:md:border-gray-700",
+      "md:px-3"
+    );
+  }
+
+  if (i === 4 || i === 5 || i === 6) {
+    borderClasses.push(
+      "md:border-t",
+      "md:border-gray-200",
+      "dark:md:border-gray-700",
+      "md:pt-3"
+    );
+  }
+
+  if (i === 1 || i === 2 || i === 3) {
+    borderClasses.push("pb-3");
+  }
+
+  if (i === 1 || i === 4) {
+    borderClasses.push("pr-3");
+  }
+
+  if (i === 3 || i === 6) {
+    borderClasses.push("pl-3");
+  }
+
+  return [...base, ...borderClasses].join(" ");
+}
+</script>
+
+<template>
+  <section class="flex flex-col items-center">
+    <span
+      class="inline-block mb-3 text-xs font-medium rounded-full px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-300/10 dark:text-blue-300"
+    >
+      {{ badge }}
+    </span>
+
+    <h2 class="text-sm sm:text-2xl font-medium mb-3">
+      {{ title }}
     </h2>
     <p class="text-[#5B6B8A] text-sm sm:text-base max-w-xl mx-auto mb-12">
-      We provide a fast, highly available IP Geolocation API backed by accurate
-      data.
+      {{ description }}
     </p>
 
-    <div>
-      <img
-        src="/landing/1.svg"
-        alt="Blue circular target icon with a dot in the center and crosshairs"
-        width="40"
-        height="40"
-        class="mx-auto mb-3"
-      />
-      <h3 class="text-black text-base font-normal mb-1 text-center">
-        Geolocation Data
-      </h3>
-      <p class="text-[#8B9AB8] text-xs sm:text-sm max-w-[220px] mx-auto">
-        Locate your website visitors by IP Address with city and postal code
-        granularity.
-      </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div
+        v-for="(feature, index) in features"
+        :key="index"
+        :class="getGridItemClasses(index)"
+      >
+        <img
+          :src="feature.img"
+          :alt="feature.alt"
+          width="40"
+          height="40"
+          class="mx-auto mb-3"
+        />
+        <h3 class="text-base font-normal mb-1 text-center">
+          {{ feature.title }}
+        </h3>
+        <p
+          class="text-[#8B9AB8] text-xs sm:text-sm text-center max-w-[220px] mx-auto"
+        >
+          {{ feature.description }}
+        </p>
+      </div>
     </div>
-
-    <div>
-      <img
-        src="/landing/2.svg"
-        alt="Light blue shield icon with a blue checkmark in the center"
-        width="40"
-        height="40"
-        class="mx-auto mb-3"
-      />
-      <h3 class="text-black text-base font-normal mb-1 text-center">
-        Threat Intelligence Feeds
-      </h3>
-      <p class="text-[#8B9AB8] text-xs sm:text-sm max-w-[220px] mx-auto">
-        Check if an IP Address is listed in any of 100+ Threat Feeds
-        instantaneously.
-      </p>
-    </div>
-
-    <div>
-      <img
-        src="/landing/3.svg"
-        alt="Light blue wireless signal icon with a dark blue dot in the center"
-        width="40"
-        height="40"
-        class="mx-auto mb-3"
-      />
-      <h3 class="text-black text-base font-normal mb-1 text-center">
-        Proxy &amp; VPN Detection
-      </h3>
-      <p class="text-[#8B9AB8] text-xs sm:text-sm max-w-[220px] mx-auto">
-        Detect anonymous users to protect your business from fraud and abuse.
-      </p>
-    </div>
-
-    <div>
-      <img
-        src="/landing/4.svg"
-        alt="Blue router icon with light blue wireless signal waves above it"
-        width="40"
-        height="40"
-        class="mx-auto mb-3"
-      />
-      <h3 class="text-black text-base font-normal mb-1 text-center">
-        Company Data
-      </h3>
-      <p class="text-[#8B9AB8] text-xs sm:text-sm max-w-[220px] mx-auto">
-        Get the name and domain of the organization that owns any IP address.
-      </p>
-    </div>
-
-    <div>
-      <img
-        src="/landing/5.svg"
-        alt="Blue and light blue server stack icon with three horizontal bars and circles"
-        width="40"
-        height="40"
-        class="mx-auto mb-3"
-      />
-      <h3 class="text-black text-base font-normal mb-1 text-center">
-        Usage Type Data
-      </h3>
-      <p class="text-[#8B9AB8] text-xs sm:text-sm max-w-[220px] mx-auto">
-        Determine whether an IP Address belongs to an ISP, Datacenter or
-        Business.
-      </p>
-    </div>
-
-    <div>
-      <img
-        src="/landing/6.svg"
-        alt="Light blue circle with a blue lightning bolt icon in the center"
-        width="40"
-        height="40"
-        class="mx-auto mb-3"
-      />
-      <h3 class="text-black text-base font-normal mb-1 text-center">
-        IP Reputation Scores
-      </h3>
-      <p class="text-[#8B9AB8] text-xs sm:text-sm max-w-[220px] mx-auto">
-        Machine Learning generated reputation scores for advanced threat
-        detection.
-      </p>
-    </div>
-  </div>
+  </section>
 </template>

@@ -28,7 +28,7 @@ const { data: info } = await useAsyncData("info", async () => {
 </script>
 
 <template>
-  <UCard class="w-full rounded-2xl shadow-lg">
+  <section class="w-full">
     <div class="flex justify-between items-center mb-4">
       <div class="flex items-center space-x-2">
         <img
@@ -45,7 +45,7 @@ const { data: info } = await useAsyncData("info", async () => {
         </p>
       </div>
       <div
-        class="flex items-center border border-slate-200/50 rounded-md p-0.5 cursor-pointer"
+        class="flex items-center border border-slate-200 dark:border-gray-700 rounded-md p-0.5 cursor-pointer"
       >
         <UButton
           type="button"
@@ -189,5 +189,5 @@ const { data: info } = await useAsyncData("info", async () => {
         :country-name="info?.medium?.CountryName"
       />
     </ClientOnly>
-  </UCard>
+  </section>
 </template>
