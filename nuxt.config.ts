@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
-  modules: ["@nuxt/ui", "@nuxt/eslint", "@nuxt/icon"],
+  modules: ["@nuxt/ui", "@nuxt/eslint", "@nuxt/icon", "@vite-pwa/nuxt"],
+  devtools: { enabled: false },
   css: ["~/assets/main.css"],
   runtimeConfig: {
     public: {
@@ -25,5 +26,34 @@ export default defineNuxtConfig({
         content: "upgrade-insecure-requests",
       },
     ],
+  },
+  pwa: {
+    registerType: "autoUpdate",
+    manifest: {
+      name: "Locanet",
+      short_name: "Locanet",
+      description:
+        "Detect user access location information along with IP address",
+      theme_color: "#ffffff",
+      icons: [
+        {
+          src: "pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    devOptions: {
+      enabled: true,
+    },
   },
 });

@@ -51,15 +51,14 @@
 
 </div>
 
-<!-- PWA: https://github.com/vinosamari/sportswire -->
 <!-- Icon: https://img.icons8.com/fluency/21/gps-device.png -->
 <!-- Web query: https://www.iplocation.net/ip-lookup -->
-<!-- IP and type: https://www.bigdatacloud.com/free-api/public-ip-address-api
-Ip (v4/v6): https://www.ddnspod.com/
-Only IP (v4 or v6): https://seeip.org/
-Only IP: https://www.ipify.org/
-Large info and search by IP: https://ipwhois.io/documentation - http://ipwho.is/115.77.20.79
-Look up: https://ip-api.com/docs/api:json#test
-Ip v6: https://6.ident.me/json - https://6.tnedi.me/json
-Only IP: https://api.iplocation.net/get-ip - https://api.iplocation.net/?cmd=get-ip - https://api.iplocation.net/?cmd=ip-country&ip=115.77.20.79 - https://api.iplocation.net/?ip=8.8.8.8
-Medium Info: https://ipinfo.io/json - https://apip.cc/json -->
+<!-- IP and type: https://www.bigdatacloud.com/free-api/public-ip-address-api -->
+<!-- Ip (v4/v6): https://www.ddnspod.com/ -->
+<!-- Only IP (v4 or v6): https://seeip.org/ -->
+<!-- Only IP: https://www.ipify.org/ -->
+<!-- Large info and search by IP: https://ipwhois.io/documentation - http://ipwho.is/115.77.20.79 -->
+<!-- Look up: https://ip-api.com/docs/api:json#test -->
+<!-- Ip v6: https://6.ident.me/json - https://6.tnedi.me/json -->
+<!-- Only IP: https://api.iplocation.net/get-ip - https://api.iplocation.net/?cmd=get-ip - https://api.iplocation.net/?cmd=ip-country&ip=115.77.20.79 - https://api.iplocation.net/?ip=8.8.8.8 -->
+<!-- Medium Info: https://ipinfo.io/json - https://apip.cc/json -->

@@ -15,6 +15,7 @@ useSeoMeta({
 </script>
 
 <template>
+  <NuxtPwaManifest />
   <UApp>
     <UContainer class="min-h-screen flex flex-col pt-4 space-y-8">
       <UCard variant="subtle" color="primary">
